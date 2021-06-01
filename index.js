@@ -5,6 +5,10 @@ const port = 8000
 // routes
 app.use('/', require('./routes'))
 
+// view engine setup
+app.set('view engine', 'ejs')
+app.set('views', './views')
+
 
 app.listen(port, (err) => {
     if (err) {
