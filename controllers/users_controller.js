@@ -24,3 +24,11 @@ exports.createUser = async (req, res) => {
         return;
     }
 }
+
+
+exports.createSession = (req, res) => {
+    return res.render('home', {
+        title: `Welcome ${req.user.name}`,
+        user: req.user
+    })
+}
