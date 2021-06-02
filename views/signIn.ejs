@@ -11,15 +11,15 @@
       <label for="floatingPassword">Password</label>
     </div>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <button type="button" class="btn-close text-reset mt-1" data-bs-dismiss="offcanvas" aria-label="Close"><i class="close fas fa-times fa-lg"></i></button>
-        <div class="offcanvas-body">
-            <%- include('signUp') -%>
-        </div>
-    </div>
-
-    <div>
+    <div class="mt-4">
         <button type="submit" class="btn btn-primary">Sign In</button>
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">New User ?</button>
     </div>
 </form>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <button type="button" class="btn-close text-reset mt-1" data-bs-dismiss="offcanvas" aria-label="Close"><i class="close fas fa-times fa-lg"></i></button>
+    <div class="offcanvas-body">
+        <%- include('signUp') -%>
+    </div>
+</div>

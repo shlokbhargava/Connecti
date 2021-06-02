@@ -3,6 +3,8 @@ const mongoose =  require('mongoose')
 
 mongoose.connect('mongodb://localhost/conneti_development', {useNewUrlParser: true, useUnifiedTopology: true})
 
+mongoose.set('useCreateIndex', true);
+
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'Error connecting to mongo db'))
