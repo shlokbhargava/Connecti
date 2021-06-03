@@ -24,16 +24,31 @@
                     <% for (post of posts) { %>
                         <div class="list-group-item mt-4 rounded-3" id="<%= post._id %>">
 
-                            <div class="row mt-1">
-                                <div class="col-1">
-                                    <i class="fas fa-user-circle fa-3x"></i> 
+                            <div class="d-flex justify-content-between mt-1">
+                                <div class="d-flex justify-content-between">
+                                    <div class="float-start">
+                                        <i class="fas fa-user-circle fa-3x"></i> 
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div>
+                                        <h6 class="card-title"> <strong><%= post.user.name %></strong></h6>
+                                        <h6 class="card-subtitle text-muted">
+                                            <small class="createdAt"><%= post.createdAt %></small>
+                                        </h6>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <h6 class="card-title"> <strong><%= post.user.name %></strong></h6>
-                                    <h6 class="card-subtitle text-muted">
-                                        <small id="createdAt"><%= post.createdAt %></small>
-                                    </h6>
-                                </div>
+                                <% if (locals.user && locals.user.id == post.user.id) { %>
+                                    <div class="dropdown">
+                                        <i class="fas fa-ellipsis-h" data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                            <li>
+                                                <a href="/posts/delete/<%= post._id %>">
+                                                    <button class="dropdown-item" type="button">Delete Post</button>
+                                                </a>
+                                            </li> 
+                                        </ul>
+                                    </div>
+                                <% } %>
                             </div>
 
                             <!-- <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="card-img-top mt-3 rounded"
@@ -46,55 +61,52 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <span><i class="far fa-thumbs-up fa-lg btn like"></i> <small class="text-muted">Likes</small></span>
-                                <span><i class="far fa-comment-alt fa-lg btn"></i> 
-                                    <small class="text-muted"><%= post.comments.length %> Comments</small>
+                                <span><i class="far fa-thumbs-up like"></i> <small class="text-muted">Likes</small></span>
+                                <span><i class="far fa-comment-alt" data-bs-toggle="collapse" data-bs-target="#post-<%= post._id %>" aria-expanded="false" aria-controls="collapseExample"></i> 
+                                    <small class="text-muted">&nbsp;<%= post.comments.length %> Comments</small>
                                 </span>
                             </div>
 
-                            <div class="post-comments-list mt-2 mb-2">
-                                <% for (comment of post.comments) { %>
-                                    <div class="alert alert-light rounded">
-                                        <figure>
-                                            <blockquote>
-                                                <p class="mb-0"><%= comment.content %></p>
-                                            </blockquote>
-                                            <figcaption class="blockquote-footer">
-                                                  <%= comment.user.name %>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                <% } %>
-                            </div>
-
-                            <!-- <div class="accordion accordion-flush" id="<%= post._id %>">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Read all Comments
-                                    </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#<%= post._id %>">
-                                    <div class="accordion-body">
-                                        Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <div class="row mt-1">
-                                <div class="col">
-                                    <i class="fas fa-user-circle fa-2x"></i> 
-                                </div>
-                                <div class="col-11">
-                                    <form class="form-group post-comments" action="/comments/create" method="POST">
-                                        <div class="input-group mb-3">
-                                            <textarea cols="11" rows="1" type="text" class="form-control" name="content" placeholder="Write a comment...." required></textarea>
-                                            <input type="hidden" name="post" value="<%= post._id %>">
-                                            <button class="input-group-text btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                            <div class="collapse" id="post-<%= post._id %>">
+                                <div class="card-flush card-body">
+                                    <% if (post.comments.length == 0) { %>
+                                        <div class="alert alert-light rounded">
+                                            <figure>
+                                                <blockquote>
+                                                    No comments yet!
+                                                </blockquote>
+                                            </figure>
                                         </div>
-                                    </form>
+                                    <% } else { %>
+                                        <div class="post-comments-list">
+                                            <% for (comment of post.comments) { %>
+                                                <div class="alert alert-light rounded">
+                                                    <figure>
+                                                        <blockquote>
+                                                            <p class="mb-0"><%= comment.content %></p>
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            <%= comment.user.name %>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    <% } %>
                                 </div>
                             </div>
+
+                            <div class="d-flex justify-content-between mt-2">
+                                <!-- <i class="fas fa-user-circle fa-2x"></i> -->
+                                <form class="form-group post-comments" action="/comments/create" method="POST">
+                                    <div class="input-group rounded-3">
+                                        <textarea cols="100" rows="1" type="text" class="form-control" name="content" placeholder="Write a comment...." required></textarea>
+                                        <input type="hidden" name="post" value="<%= post._id %>">
+                                        <button class="input-group-text btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     <% } %>
                 </div>
@@ -118,13 +130,7 @@
     </div>
 <% } %>
 
-<!-- <script>
-    const len = 
-    console.log(len)
-    function getDate() {
-        document.getElementById("createdAt").innerHTML = new Date (document.getElementById("createdAt").innerHTML).toDateString().split(' ').slice(1).join(' ')
-    }
-</script> -->
 
+<script src="/js/home.js"></script>
 
 

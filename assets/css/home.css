@@ -10,6 +10,10 @@ body {
     color: #3498db;
 }
 
+a {
+    text-decoration: none;
+}
+
 .post-comments-list {
     height: 100px;
     overflow: scroll; 
