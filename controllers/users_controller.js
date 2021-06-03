@@ -23,7 +23,7 @@ exports.createUser = async (req, res) => {
         return res.redirect('/')
     } catch (error) {
         console.log('Error in creating user', error)
-        return;
+        return res.redirect('/');
     }
 }
 

@@ -1,7 +1,51 @@
 <% if(locals.user) { %>
-    <%= user.name %>
+    <link rel="stylesheet" href="/css/home.css">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 mt-5">
+               
+            </div>
+            <div class="col-sm-6 mt-5">
+
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <form class="form-group" action="/posts/create/<%= user._id %>" id="new-post-form" method="POST">
+                            <textarea class="form-control" name="content" placeholder="Create a new post" rows="3"></textarea>
+                            <!-- <div class="form-group mt-3">
+                                <input class="form-control" name="" type="file">
+                            </div> -->
+                            <button type="submit" class="btn btn-info mt-3 float-end">Post</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle fa-3x"></i> &nbsp;<%= user.name %>
+                    </div>
+                    <img
+                      src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mt-5">
+
+            </div>
+        </div>
+    </div>
+
 <% } else { %>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-6">
             <img src="/images/users.jpg" alt="Welcome to Connecti">
         </div>
