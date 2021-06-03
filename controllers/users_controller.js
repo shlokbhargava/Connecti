@@ -1,7 +1,9 @@
 const User = require('../models/user')
 
 exports.getUserProfile = (req, res) => {
-    return res.end('<h1>Profile</h1>')
+    return res.render('profile', {
+        title: `Profile | ${req.user.name}`
+    })
 }
 
 exports.createUser = async (req, res) => {
@@ -27,8 +29,11 @@ exports.createUser = async (req, res) => {
 
 
 exports.createSession = (req, res) => {
-    return res.render('home', {
-        title: `Welcome ${req.user.name}`,
-        user: req.user
-    })
+    return res.redirect('/')
+}
+
+
+exports.logout = (req, res) => {
+    req.logout()
+    return res.redirect('/')
 }

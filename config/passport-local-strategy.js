@@ -40,4 +40,24 @@ passport.deserializeUser(function(id, done) {
 })
 
 
+// Check if user is authenticated
+passport.checkAuthentication = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+
+    return res.redirect('/')
+}
+
+
+// If authenticated set User for views
+passport.setAuthenticatedUser = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        res.locals.user = req.user 
+    }
+
+    next()
+}
+
+
 module.exports = passport

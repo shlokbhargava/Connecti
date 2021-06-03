@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-4 offset-sm-4">
+            <div class="form-group">
+                <label class="form-label mt-4">Name</label>
+                <input type="text" class="form-control" name="name" required value=<%= user.name %>>
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4">Email address</label>
+                <input type="email" class="form-control" name="email" required value=<%= user.email %>>
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4">Password</label>
+                <input type="password" class="form-control" name="password" required value=<%= user.password %>>
+            </div>
+            <div class="form-group">
+                <label class="form-label mt-4">Profile Picture</label>
+                <input class="form-control" name="avatar" type="file">
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary mt-4">Update</button>
+        </div>
+    </div>
+</div>
