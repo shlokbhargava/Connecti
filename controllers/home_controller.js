@@ -1,6 +1,27 @@
-exports.home = (req, res) => {
-    
-    return res.render('home', {
-        title: 'Home'
-    })
+const Post = require('../models/post')
+const User = require('../models/user')
+
+exports.home = async (req, res) => {
+    try {
+        
+        const posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+        })
+
+        const users = await User.find({})
+        
+        return res.render('home', {
+            title: 'Home',
+            posts: posts,
+            users: users
+        })        
+    } catch (error) {
+        console.log("Error in finding posts on home page")
+        return;
+    }
 }

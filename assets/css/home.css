@@ -1,3 +1,16 @@
 body {
     background-color: #f0f2f5;
 }
+
+.like {
+    color: #3498db;
+}
+
+.like:hover{
+    color: #3498db;
+}
+
+.post-comments-list {
+    height: 100px;
+    overflow: scroll; 
+}
