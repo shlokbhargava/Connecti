@@ -3,10 +3,42 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 mt-5">
-
+            <div class="col-sm-3 users mt-5">
+                <div class="list-group-flush mt-5">
+                    <% for (user of users) { %> 
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                    <% } %>
+                </div>
             </div>
-            <div class="col-sm-6 mt-5">
+            <div class="col-sm-6 main">
 
                 <div class="card mt-5">
                     <div class="card-body">
@@ -34,6 +66,8 @@
                                         <h6 class="card-title"> <strong><%= post.user.name %></strong></h6>
                                         <h6 class="card-subtitle text-muted">
                                             <small class="createdAt"><%= post.createdAt %></small>
+                                            <small> at </small>
+                                            <small class="createdTime"><%= post.createdAt %></small>
                                         </h6>
                                     </div>
                                 </div>
@@ -70,7 +104,7 @@
                             <div class="collapse" id="post-<%= post._id %>">
                                 <div class="card-flush card-body">
                                     <% if (post.comments.length == 0) { %>
-                                        <div class="alert alert-light rounded">
+                                        <div class="comment-display">
                                             <figure>
                                                 <blockquote>
                                                     No comments yet!
@@ -80,15 +114,32 @@
                                     <% } else { %>
                                         <div class="post-comments-list">
                                             <% for (comment of post.comments) { %>
-                                                <div class="alert alert-light rounded">
-                                                    <figure>
-                                                        <blockquote>
-                                                            <p class="mb-0"><%= comment.content %></p>
-                                                        </blockquote>
-                                                        <figcaption class="blockquote-footer">
-                                                            <%= comment.user.name %>
-                                                        </figcaption>
-                                                    </figure>
+                                                <div class="d-flex">
+                                                    <i class="fas fa-user-circle"></i>
+                                                    <span class="comment-display">
+                                                        <span class="d-flex"> 
+                                                            <p class="mb-0"><%= comment.content %> </p>
+                                                            <% if (locals.user && (locals.user.id == comment.user.id || locals.user.id == post.user.id)) { %>
+                                                                <div class="dropdown">
+                                                                    <i class="fas fa-ellipsis-h" data-bs-toggle="dropdown"></i>
+                                                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                                                        <li>
+                                                                            <a href="/comments/delete/<%= comment._id %>">
+                                                                                <button class="dropdown-item btn-sm" type="button">Delete
+                                                                                </button>
+                                                                            </a>
+                                                                        </li> 
+                                                                    </ul>
+                                                                </div>
+                                                            <% } %>
+                                                        </span>
+                                                        <!-- <span class="comment-user-detail">
+                                                            <%= comment.user.name %> 
+                                                        </span>
+                                                        <span class="dt">
+                                                            <%= comment.createdAt %>
+                                                        </span> -->
+                                                    </span>
                                                 </div>
                                             <% } %>
                                         </div>
@@ -111,10 +162,40 @@
                     <% } %>
                 </div>
             </div>
-            <div class="col-sm-3 mt-5">
-                <% for (user of users) { %> 
-                    <%= user.name %>
-                <% } %>
+            <div class="col-sm-3 users mt-5">
+                <div class="list-group-flush mt-5">
+                    <% for (user of users) { %> 
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                        <div class="note-light list-group-item"><%= user.name %></div>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>

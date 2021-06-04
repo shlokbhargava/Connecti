@@ -27,3 +27,30 @@ exports.createComment = async (req, res) => {
         return;
     }
 }
+
+
+exports.deleteComment = async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id)
+
+        if (!comment) {
+            console.log("No comment found")
+            return res.redirect('back')
+        }
+
+        if (comment && comment.user == req.user.id || comment.post.user == req.user.id) {
+            const postId = comment.post
+            
+            comment.remove()
+
+            await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } })
+        } else {
+            console.log("Not authorized")
+        }
+
+        return res.redirect('back')
+    } catch (error) {
+        console.log("error in deleting comment", error)
+        return res.redirect('back')
+    }
+}
