@@ -1,14 +1,36 @@
 <link rel="stylesheet" href="/css/friend.css">
 
 <% if (locals.user.id != u.id) { %>
-    <div class="note-light list-group-item">
+    <div class="list-group-item friends-list d-flex justify-content-between">
         <div>
-            <%= u.name %>
+            <strong><%= u.name %></strong>
         </div>
         <div>
-            <i class="fas fa-comments"></i>
-            <i class="fas fa-user-plus"></i>
-            <i class="fas fa-id-card"></i>
+            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat-area" aria-controls="offcanvasScrolling">
+                <i class="fas fa-comments"></i>
+            </button>
+            <button class="btn" type="button" ><i class="fas fa-user-plus"></i></button>
+            <a href="/profile/<%= u._id %>" class="btn"><i class="fas fa-id-card"></i></a>
         </div>
     </div>
 <% } %>
+
+
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="chat-area" aria-labelledby="offcanvasScrollingLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fas fa-times fa-lg"></i></button>
+                </div>
+                <div class="offcanvas-body">
+                  <p>Try scrolling the rest of the page to see this option in action.</p>
+                </div>
+              </div>
+              <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <p>.....</p>
+                </div>
+              </div>

@@ -9,25 +9,27 @@
             <form action="/profile/update" method="POST" class="form-group mb-5">
                 <div class="form-group">
                     <label class="form-label mt-4">Name</label>
-                    <input class="form-control input" name="name" type="text" value="<%= user.name %>" disabled required>
+                    <input class="form-control input" name="name" type="text" value="<%= userProfile.name %>" disabled required>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Email address</label>
-                    <input class="form-control input" name="email" type="email" value="<%= user.email %>" disabled required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label mt-4">Password</label>
-                    <input class="form-control input" name="password" type="password" value="<%= user.password %>" disabled required>
-                </div>
-                <div class="form-group" id="confirm-password" hidden>
-                    <label class="form-label mt-4">Confirm Password</label>
-                    <input class="form-control" name="confirmPassword" type="password" value="<%= user.password %>" required>
+                    <input class="form-control input" name="email" type="email" value="<%= userProfile.email %>" disabled required>
                 </div>
                 <!-- <div class="form-group">
                     <label class="form-label mt-4">Profile Picture</label>
                     <input class="form-control input" name="avatar" type="file" disabled>
                 </div> -->
-                <button type="button" id="edit-button" class="btn btn-outline-success mt-4" onclick="showForm()">Edit</button>
+                <% if (locals.user.id == userProfile.id) { %>
+                    <div class="form-group">
+                        <label class="form-label mt-4">Password</label>
+                        <input class="form-control input" name="password" type="password" value="<%= userProfile.password %>" disabled required>
+                    </div>
+                    <div class="form-group" id="confirm-password" hidden>
+                        <label class="form-label mt-4">Confirm Password</label>
+                        <input class="form-control" name="confirmPassword" type="password" value="<%= userProfile.password %>" required>
+                    </div>
+                    <button type="button" id="edit-button" class="btn btn-outline-success mt-4" onclick="showForm()">Edit</button>
+                <% } %>
                 <button type="submit" id="update-button" class="btn btn-outline-success mt-4" hidden>Update</button>
             </form>
         </div>

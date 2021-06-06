@@ -1,9 +1,20 @@
 const User = require('../models/user')
 
-exports.getUserProfile = (req, res) => {
-    return res.render('profile', {
-        title: `Profile | ${req.user.name}`
-    })
+exports.getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+
+        if (user) {
+            return res.render('profile', {
+                title: `Profile | ${user.name}`,
+                userProfile: user
+            })
+        }
+    } catch (error) {
+        console.log('User Profile not found')
+    }
+
+    return res.redirect('back')
 }
 
 

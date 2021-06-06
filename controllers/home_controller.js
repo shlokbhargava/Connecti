@@ -2,6 +2,7 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 exports.home = async (req, res) => {
+
     try {
         
         const posts = await Post.find({})

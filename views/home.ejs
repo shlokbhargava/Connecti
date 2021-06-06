@@ -3,13 +3,14 @@
 
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-sm-3 users mt-5">
                 <div class="list-group-flush mt-5">
 
                 </div>
             </div>
-            <div class="col-sm-6 main">
 
+            <div class="col-sm-6 main">
                 <div class="card mt-5">
                     <div class="card-body">
                         <form class="form-group" action="/posts/create" id="new-post-form" method="POST">
@@ -21,7 +22,6 @@
                         </form>
                     </div>
                 </div>
-
                 <% if (posts.length == 0) { %>
                     <h3 class="text-center mt-4">
                         No Posts Yet! <i class="far fa-frown"></i></i>
@@ -34,6 +34,8 @@
                     </div>
                 <% } %>
             </div>
+
+
             <div class="col-sm-3 users mt-5">
                 <div class="list-group-flush mt-5">
                     <% for (u of users) { %> 
@@ -41,6 +43,7 @@
                     <% } %>
                 </div>
             </div>
+            
         </div>
     </div>
 

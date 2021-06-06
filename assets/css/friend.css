@@ -1,3 +1,11 @@
-.note-light {
+.friends-list {
     background-color: #f0f2f5;
-} 
+}
+
+.friends-list .btn{
+    background-color: #f0f2f5;
+}
+
+strong {
+    font-size: larger;
+}
