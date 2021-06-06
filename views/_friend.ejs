@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/friend.css">
+
+<% if (locals.user.id != u.id) { %>
+    <div class="note-light list-group-item">
+        <div>
+            <%= u.name %>
+        </div>
+        <div>
+            <i class="fas fa-comments"></i>
+            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-id-card"></i>
+        </div>
+    </div>
+<% } %>

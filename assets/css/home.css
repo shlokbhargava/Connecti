@@ -24,44 +24,7 @@ i {
     cursor: pointer;
 }
 
-.post-comments-list {
-    height: fit-content;
-    max-height: 200px;
-    overflow: scroll; 
-}
-
-.comment-display {
-    background-color: #ecf0f1;
-    width: fit-content;
-    height: fit-content;
-    border-radius: .5rem;
-    padding: 0.6em 1em;
-    margin-bottom: 1em;
-    font-size: .90em;
-    font-weight: 600;
-}
-
-.comment-display i {
-    margin-left: 1em;
-}
-
-.comment-user-detail{
-    display: inline;
-    font-size: .68em;
-    color: #5d6161;
-}
-
-.dt {
-    display: inline;
-    font-size: .68em;
-    color: #5d6161;
-}
-
 .users {
     height: 100vh;
     overflow: scroll;
-}
-
-.note-light {
-    background-color: #f0f2f5;
 }

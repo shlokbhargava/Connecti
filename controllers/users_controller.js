@@ -1,11 +1,5 @@
 const User = require('../models/user')
 
-exports.getUserProfile = (req, res) => {
-    return res.render('profile', {
-        title: `Profile | ${req.user.name}`
-    })
-}
-
 exports.createUser = async (req, res) => {
     try {
         if (req.body.password != req.body.confirm_password) {

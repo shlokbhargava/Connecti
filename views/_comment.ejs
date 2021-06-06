@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/comment.css">
+
+<% if (post.comments.length == 0) { %>
+    <div class="comment-display">
+        <figure>
+            <blockquote>
+                No comments yet!
+            </blockquote>
+        </figure>
+    </div>
+<% } else { %>
+    <div class="post-comments-list">
+        <% for (comment of post.comments) { %>
+            <div class="d-flex">
+                <i class="fas fa-user-circle"></i>
+                <span class="comment-display">
+                    <span class="d-flex justify-content-between"> 
+                        <p class="mb-0"><%= comment.content %> </p>
+                        <% if (locals.user && (locals.user.id == comment.user.id || locals.user.id == post.user.id)) { %>
+                            <div class="dropdown">
+                                <i class="fas fa-ellipsis-h" data-bs-toggle="dropdown"></i>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                    <li>
+                                        <a href="/comments/delete/<%= comment._id %>">
+                                            <button class="dropdown-item btn-sm" type="button">Delete
+                                            </button>
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </div>
+                        <% } %>
+                    </span>
+                    <span class="float-end">
+                        <span class="comment-user-detail">
+                            <%= comment.user.name %> |
+                        </span>
+                        <span class="dt">
+                            <small class="commentOn"><%= comment.createdAt %></small>
+                            <small> | </small>
+                            <small class="commentAt"><%= comment.createdAt %></small>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        <% } %>
+    </div>
+<% } %>
+
+
+<script src="/js/comment.js"></script>

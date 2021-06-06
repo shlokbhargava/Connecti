@@ -1,0 +1,68 @@
+<div class="list-group-item mt-4 rounded-3" id="<%= post._id %>">
+    <div class="d-flex justify-content-between mt-1"> 
+        <div class="d-flex justify-content-between">
+            <div class="float-start">
+                <i class="fas fa-user-circle fa-3x"></i> 
+            </div>
+            &nbsp;&nbsp;
+            <div>
+                <h6 class="card-title"> <strong><%= post.user.name %></strong></h6>
+                <h6 class="card-subtitle text-muted">
+                    <small class="createdAt"><%= post.createdAt %></small>
+                    <small> at </small>
+                    <small class="createdTime"><%= post.createdAt %></small>
+                </h6>
+            </div>
+        </div>
+        <% if (locals.user && locals.user.id == post.user.id) { %>
+            <div class="dropdown">
+                <i class="fas fa-ellipsis-h" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                    <li>
+                        <a href="/posts/delete/<%= post._id %>">
+                            <button class="dropdown-item" type="button">Delete Post</button>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        <% } %>
+    </div>
+    
+    <!-- <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="card-img-top mt-3 rounded"
+    alt="..."/> -->
+    
+    <div class="card-body">
+        <p class="card-text">
+          <%= post.content %>
+        </p>
+    </div>
+    
+    <div class="d-flex justify-content-between">
+        <span><i class="far fa-thumbs-up like"></i> <small class="text-muted">Likes</small></span>
+        <span><i class="far fa-comment-alt" data-bs-toggle="collapse" data-bs-target="#post-<%= post._id %>" aria-expanded="false" aria-controls="collapseExample"></i> 
+            <small class="text-muted">&nbsp;<%= post.comments.length %> Comments</small>
+        </span>
+    </div>
+    
+    <div class="collapse" id="post-<%= post._id %>">
+        <div class="card-flush card-body">
+            <%- include('_comment') -%>
+        </div>
+    
+    </div>
+    
+    <div class="d-flex justify-content-between mt-2">
+        <!-- <i class="fas fa-user-circle fa-2x"></i> -->
+        <form class="form-group post-comments" action="/comments/create" method="POST">
+            <div class="input-group rounded-3">
+                <textarea cols="100" rows="1" type="text" class="form-control" name="content" placeholder="Write a comment...." required></textarea>
+                <input type="hidden" name="post" value="<%= post._id %>">
+                <button class="input-group-text btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </form>
+    </div>
+</div> 
+
+
+
+<script src="/js/post.js"></script>

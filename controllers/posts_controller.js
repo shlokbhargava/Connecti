@@ -5,7 +5,7 @@ const Comment = require('../models/comment')
 
 exports.createPost = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id)
+        const user = await User.findById(req.user._id)
 
         if (!user) {
             console.log("User is not found")
@@ -14,7 +14,7 @@ exports.createPost = async (req, res) => {
     
         const newPost = await Post.create({
             content: req.body.content,
-            user: req.params.id
+            user: req.user._id
         })
 
         return res.redirect('back')
