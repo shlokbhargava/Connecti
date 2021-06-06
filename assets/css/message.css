@@ -1,0 +1,33 @@
+#messages ul {
+    border: 0;
+    border-radius: .5rem;
+    position: relative;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+#messages li{
+    list-style-type: none;
+    text-align: center;
+}
+
+#messages .info {
+    color: #0b3d91;
+    background-color: #d0e0fc;
+}
+
+#messages .danger {
+    background-color: #fed6dd;;
+    color: #951d32;;
+}
+
+#messages .success {
+    color: #006e2c;
+    background-color: #ccf1db;
+}
+
+#messages .warning {
+    color: #640;
+    background-color: #fec;
+}

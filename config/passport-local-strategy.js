@@ -10,11 +10,11 @@ passport.use(new LocalStrategy({
         User.findOne({ email: email }, function(err, user) {
 
             if (err) {
-                console.log("Error in finding the user")
+                req.flash('danger', 'Error in finding the user')
                 return done(err)
             }
             if (!user || user.password != password) {
-                console.log('Invalid username/password')
+                req.flash('danger', 'Invalid username/password')
                 return done(null, false)
             }
 
@@ -31,7 +31,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
         if (err) {
-            console.log('Error in finding the user --> Passport');
+            req.flash('danger', 'Error in finding the user')
             return done(err)
         }
 

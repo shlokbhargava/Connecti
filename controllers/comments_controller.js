@@ -7,8 +7,8 @@ exports.createComment = async (req, res) => {
         const post = await Post.findById(req.body.post)
 
         if (!post) {
-            console.log("Post does not exists")
-            return;
+            req.flash('danger', 'Post does not exists')
+            return res.redirect('back');
         }
 
         const comment = await Comment.create({
@@ -34,8 +34,7 @@ exports.deleteComment = async (req, res) => {
         const comment = await Comment.findById(req.params.id)
 
         if (!comment) {
-            console.log("No comment found")
-            return res.redirect('back')
+            req.flash('danger', 'No comment found')
         }
 
         if (comment && comment.user == req.user.id || comment.post.user == req.user.id) {
@@ -44,8 +43,9 @@ exports.deleteComment = async (req, res) => {
             comment.remove()
 
             await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } })
+            req.flash('success', 'Comment deleted successfully')
         } else {
-            console.log("Not authorized")
+            req.flash('warning', 'Not Authorized')
         }
 
         return res.redirect('back')

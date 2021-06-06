@@ -1,6 +1,7 @@
 <div class="offcanvas-header mt-5">
     <h3 id="offcanvasRightLabel">Sign In</h3>
 </div>
+<%- messages() %>
 <form class="form-group" action="/users/create-session" method="POST">
     <div class="form-floating mb-3">
       <input type="email" class="form-control" name="email" placeholder="name@example.com" required>
@@ -17,10 +18,11 @@
     </div>
 </form>
 
-
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <button type="button" class="btn-close text-reset mt-1" data-bs-dismiss="offcanvas" aria-label="Close"><i class="close fas fa-times fa-lg"></i></button>
     <div class="offcanvas-body">
         <%- include('signUp') -%>
     </div>
 </div>
+
+

@@ -8,7 +8,7 @@ exports.createPost = async (req, res) => {
         const user = await User.findById(req.user._id)
 
         if (!user) {
-            console.log("User is not found")
+            req.flash('danger', 'User not found')
             return res.redirect('back')
         }
     
@@ -17,6 +17,7 @@ exports.createPost = async (req, res) => {
             user: req.user._id
         })
 
+        req.flash('success', 'Congratulations! You have published a new post')
         return res.redirect('back')
     } catch (error) {
         console.log("error in creating a new post", error)
@@ -30,18 +31,20 @@ exports.deletePost = async (req, res) => {
         const post = await Post.findById(req.params.id)
 
         if (!post) {
-            console.log("Post Not found Try again")
+            req.flash('danger', 'Post Not found Try again')
             return res.redirect('back')
         }
 
         if (post.user != req.user.id) {
-            console.log("Not authorized")
+            req.flash('warning', 'Not authorized')
             return res.redirect('back')
         }
 
         post.remove()
 
         await Comment.deleteMany({ post: req.params.id })
+
+        req.flash('success', 'Post deleted successfully')
         return res.redirect('back')
     } catch (error) {
         console.log("error in deleting a post", error)

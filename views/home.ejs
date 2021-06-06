@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/message.css">
+
 <% if(locals.user) { %>
     <link rel="stylesheet" href="/css/home.css">
 
@@ -22,6 +24,9 @@
                         </form>
                     </div>
                 </div>
+
+                <%- messages() %>
+
                 <% if (posts.length == 0) { %>
                     <h3 class="text-center mt-4">
                         No Posts Yet! <i class="far fa-frown"></i></i>
@@ -58,5 +63,8 @@
     </div>
 <% } %>
 
+
+
+<script src="/js/message.js"></script>
 
 

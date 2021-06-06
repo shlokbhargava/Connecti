@@ -3,15 +3,18 @@ const User = require('../models/user')
 exports.createUser = async (req, res) => {
     try {
         if (req.body.password != req.body.confirm_password) {
+            req.flash('danger', 'Passwords do not match')
             return res.redirect('back')
         }
     
         const user = await User.findOne({ email: req.body.email })
     
         if (user) {
+            req.flash('info', 'User Already exists')
             return res.redirect('back')
         } else {
             const newUser = await User.create(req.body)
+            req.flash('success', 'Account created, Sign In')
         }
 
         return res.redirect('/')

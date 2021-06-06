@@ -9,7 +9,7 @@ const session = require('express-session')
 const passport = require('passport')
 const passportLocal = require('./config/passport-local-strategy')
 const MongoStore = require('connect-mongo')
-
+const flash = require('connect-flash')
 
 dotenv.config()
 
@@ -51,6 +51,13 @@ app.use(session({
         }
     )
 }))
+
+
+app.use(flash());
+app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+});
 
 
 app.use(passport.initialize())

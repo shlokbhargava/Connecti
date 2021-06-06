@@ -26,20 +26,21 @@ exports.updateUserProfile = async (req, res) => {
             const existsEmail = await User.findOne({ email: req.body.email })
 
             if (existsEmail && existsEmail._id.toString().localeCompare(req.user._id.toString()) != 0) {
-                console.log('Email already in use')
+                req.flash('info', 'Email already in use')
             } else {
                 if (req.body.password != req.body.confirmPassword) {
-                    console.log('Passwords do not match')
+                    req.flash('danger', 'Passwords do not match')
                 } else {
                     user.name = req.body.name,
                     user.email = req.body.email,
                     user.password = req.body.password
 
                     user.save()
+                    req.flash('success', 'Profile updated successfully')
                 }
             }
         } else {
-            console.log('User not found')
+            req.flash('danger', 'User not found')
         }
         
         return res.redirect('back')
