@@ -23,7 +23,7 @@ exports.home = async (req, res) => {
             users: users
         })        
     } catch (error) {
-        console.log("Error in finding posts on home page")
+        req.flash('danger', error)
         return;
     }
 }

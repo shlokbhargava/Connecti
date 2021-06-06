@@ -23,7 +23,7 @@ exports.createComment = async (req, res) => {
         res.redirect('/')
 
     } catch (error) {
-        console.log("error in creating a post")
+        req.flash('danger', error)
         return;
     }
 }
@@ -50,7 +50,7 @@ exports.deleteComment = async (req, res) => {
 
         return res.redirect('back')
     } catch (error) {
-        console.log("error in deleting comment", error)
+        req.flash('danger', error)
         return res.redirect('back')
     }
 }

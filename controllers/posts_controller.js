@@ -20,7 +20,7 @@ exports.createPost = async (req, res) => {
         req.flash('success', 'Congratulations! You have published a new post')
         return res.redirect('back')
     } catch (error) {
-        console.log("error in creating a new post", error)
+        req.flash('danger', error)
         return res.redirect('back')
     }
 }
@@ -47,7 +47,7 @@ exports.deletePost = async (req, res) => {
         req.flash('success', 'Post deleted successfully')
         return res.redirect('back')
     } catch (error) {
-        console.log("error in deleting a post", error)
+        req.flash('danger', error)
         return res.redirect('back')
     }
 }

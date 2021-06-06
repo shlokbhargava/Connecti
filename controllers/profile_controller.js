@@ -11,7 +11,7 @@ exports.getUserProfile = async (req, res) => {
             })
         }
     } catch (error) {
-        console.log('User Profile not found')
+        req.flash('danger', error)
     }
 
     return res.redirect('back')
@@ -46,7 +46,7 @@ exports.updateUserProfile = async (req, res) => {
         return res.redirect('back')
 
     } catch (error) {
-        console.log("Error in update profile", error)
+        req.flash('danger', error)
         return res.redirect('back')
     }
 }

@@ -1,3 +1,3 @@
 setTimeout(() => {
     document.getElementById('messages').style.display = "none"
-}, 5000)
+}, 4000)

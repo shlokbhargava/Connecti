@@ -19,18 +19,20 @@ exports.createUser = async (req, res) => {
 
         return res.redirect('/')
     } catch (error) {
-        console.log('Error in creating user', error)
+        req.flash('danger', error)
         return res.redirect('/');
     }
 }
 
 
 exports.createSession = (req, res) => {
+    req.flash('success', `Welcome ${req.user.name}`)
     return res.redirect('/')
 }
 
 
 exports.logout = (req, res) => {
     req.logout()
+    req.flash('success', 'You have logged out!')
     return res.redirect('/')
 }
